@@ -10,7 +10,7 @@ http.createServer(function (req, res) {
         });
         req.on('end', () => {
             const parsedBody = querystring.parse(body); // analizza i dati del corpo
-            const yourField = parsedBody.yourField; // estrai il campo desiderato
+            const yourField = parsedBody.username; // estrai il campo desiderato
 
             console.log(yourField);
             res.end('Campo ricevuto!');
