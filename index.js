@@ -1,4 +1,6 @@
 var http = require('http');
+const querystring = require('querystring');
+
 http.createServer(function (req, res) {
     console.log(`Just got a request at ${req.url}!`)
     if (req.method === 'POST' && req.url === '/login') {
@@ -7,8 +9,11 @@ http.createServer(function (req, res) {
             body += chunk.toString(); // convert Buffer to string
         });
         req.on('end', () => {
-            console.log(body);
-            res.end('ok');
+            const parsedBody = querystring.parse(body); // analizza i dati del corpo
+            const yourField = parsedBody.yourField; // estrai il campo desiderato
+
+            console.log(yourField);
+            res.end('Campo ricevuto!');
         });
     }
     res.write('Yay!');
