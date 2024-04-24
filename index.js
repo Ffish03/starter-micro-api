@@ -9,10 +9,12 @@ http.createServer(function (req, res) {
             body += chunk.toString(); // convert Buffer to string
         });
         req.on('end', () => {
-            const parsedBody = querystring.parse(body); // analizza i dati del corpo
-            const yourField = parsedBody.username; // estrai il campo desiderato
+            const parsedBody = querystring.parse(body); 
+            const username = parsedBody.username;
+            const password = parsedBody.password;
 
-            console.log(yourField);
+            console.log(username);
+            console.log(password);
             res.end('Campo ricevuto!');
         });
     }
